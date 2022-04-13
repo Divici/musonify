@@ -21,7 +21,7 @@ const navMenu = [
     },
   ]
   
-  const musicMenu = [
+const musicMenu = [
     {
       name: 'Create Playlist',
       icon: MdPlaylistAdd,
@@ -32,7 +32,9 @@ const navMenu = [
       icon: MdFavorite,
       route: '/favorites',
     },
-  ]
+]
+
+const playlists = new Array(30).fill(1).map((_,i) => `Playlist ${i+1}`)
 
 const Sidebar = () => {
     return (
@@ -77,6 +79,27 @@ const Sidebar = () => {
                 </Box>
 
                 <Divider marginY="20px" color="gray.600" />
+
+                <Box height="66%" overflowY="auto" paddingY="20px">
+                    <List spacing={2}>
+                        {playlists.map((playlist) => (
+                            <ListItem paddingX="20px" key={playlist}>
+                                <LinkBox>
+                                    <NextLink 
+                                    href="/"
+                                        // href={{
+                                        //     pathname: '/playlist/[id]',
+                                        //     query: { id: playlist.id },
+                                        // }}
+                                        passHref
+                                    >
+                                        <LinkOverlay>{playlist}</LinkOverlay>
+                                    </NextLink>
+                                </LinkBox>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
 
             </Box>
         </Box>
