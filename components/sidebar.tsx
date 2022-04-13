@@ -20,15 +20,27 @@ const navMenu = [
       route: '/library',
     },
   ]
+  
+  const musicMenu = [
+    {
+      name: 'Create Playlist',
+      icon: MdPlaylistAdd,
+      route: '/',
+    },
+    {
+      name: 'Liked Songs',
+      icon: MdFavorite,
+      route: '/favorites',
+    },
+  ]
 
 const Sidebar = () => {
     return (
         <Box width="100%" height="calc(100vh - 100px)" bg="black" paddingX="5px" color="gray">
-
             <Box paddingY="20px" height="100%">
 
                 <Box width="200px" marginBottom="20px" paddingX="20px">
-                    <NextImage src="/musonifyLogo.png" height={85} width={300} /> 
+                    <NextImage src="/musonifyLogo.png" height={110} width={400} /> 
                 </Box>
                 <Box marginBottom="20px">
                     <List spacing={2}>
@@ -46,6 +58,26 @@ const Sidebar = () => {
                         ))}
                     </List>
                 </Box>
+                
+                <Box marginTop="20px">
+                    <List spacing={2}>
+                        {musicMenu.map((menu) => (
+                            <ListItem paddingX="20px" fontSize="16px" key={menu.name}>
+                                <LinkBox>
+                                    <NextLink href={menu.route} passHref>
+                                        <LinkOverlay>
+                                            <ListIcon as={menu.icon} color="white" marginRight="20px" />
+                                            {menu.name}
+                                        </LinkOverlay>
+                                    </NextLink>
+                                </LinkBox>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
+
+                <Divider marginY="20px" color="gray.600" />
+
             </Box>
         </Box>
     )
